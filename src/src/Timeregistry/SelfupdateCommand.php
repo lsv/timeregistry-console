@@ -8,8 +8,6 @@ use Symfony\Component\Filesystem\Filesystem;
 class SelfupdateCommand extends Command
 {
 
-    const PHARMODE = false;
-
     protected function configure()
     {
         $this
@@ -20,7 +18,7 @@ class SelfupdateCommand extends Command
 
     public function isEnabled()
     {
-        return self::PHARMODE;
+        return $this->getApplication()->getPharmode();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

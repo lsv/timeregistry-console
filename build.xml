@@ -17,15 +17,29 @@
         <echo msg="Bumped to version: ${version}"/>
     </target>
 
-    <target name="create-phar" depends="prepare">
+    <target name="create-phar">
         <exec command="php createPhar.php"/>
         <echo msg="Phar file created" />
     </target>
 
-    <target name="release" depends="create-phar">
-        <exec command="git add ."/>
-        <exec command="git commit -m 'bumped to version: ${version}'"/>
-        <exec command="git push"/>
+    <target name="remove-config">
+        <delete file="src/config.php"/>
+    </target>
+
+    <target name="release">
+        <phingcall target="prepare"/>
+        <phingcall target="create-phar"/>
+        <phingcall target="remove-config"/>
+        <propertyprompt propertyName="push" promptText="Push to git" promptCharacter="?" defaultValue="n" />
+        <if>
+            <equals arg1="${push}" arg2="y" casesensitive="false" trim="true" />
+            <then>
+                <echo msg="Pushing to git" />
+                <exec command="git add ."/>
+                <exec command="git commit -m 'bumped to version: ${version}'"/>
+                <exec command="git push"/>
+            </then>
+        </if>
     </target>
 
 </project>
