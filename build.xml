@@ -17,19 +17,16 @@
         <echo msg="Bumped to version: ${version}"/>
     </target>
 
-    <target name="create-phar">
+    <target name="create-phar" depends="prepare">
         <exec command="php createPhar.php"/>
         <echo msg="Phar file created" />
     </target>
 
-    <target name="remove-config">
+    <target name="remove-config" depends="create-phar">
         <delete file="src/config.php"/>
     </target>
 
-    <target name="release">
-        <phingcall target="prepare"/>
-        <phingcall target="create-phar"/>
-        <phingcall target="remove-config"/>
+    <target name="release" depends="remove-config">
         <propertyprompt propertyName="push" promptText="Push to git" promptCharacter="?" defaultValue="n" />
         <if>
             <equals arg1="${push}" arg2="y" casesensitive="false" trim="true" />
