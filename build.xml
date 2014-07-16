@@ -26,7 +26,9 @@
         <delete file="src/config.php"/>
     </target>
 
-    <target name="release" depends="remove-config">
+    <target name="release" depends="prepare">
+        <phingcall target="create-phar" />
+        <!--<phingcall target="remove-config" />-->
         <propertyprompt propertyName="push" promptText="Push to git" promptCharacter="?" defaultValue="n" />
         <if>
             <equals arg1="${push}" arg2="y" casesensitive="false" trim="true" />
@@ -35,6 +37,7 @@
                 <exec command="git add ."/>
                 <exec command="git commit -m 'bumped to version: ${version}'"/>
                 <exec command="git push"/>
+                <echo msg="Version: ${version} is now live" />
             </then>
         </if>
     </target>

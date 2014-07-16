@@ -43,13 +43,13 @@ class SelfupdateCommand extends Command
         $latestVersion = file_get_contents($latest);
 
         switch (version_compare($this->getApplication()->getVersion(), $latestVersion)) {
-            case -1:
-                $output->writeln('<info>You are using the a newer version of "Timelog" version. SWEEET</info>');
+            case 1:
+                $output->writeln('<info>You are using a newer version of "Timelog" version. SWEEET</info>');
                 break;
             case 0:
                 $output->writeln('<info>You are using the latest "Timelog" version.</info>');
                 break;
-            case 1:
+            case -1:
                 $output->writeln(sprintf("Updating to version <info>%s</info>.", $latestVersion));
 
                 $fs->copy($remoteFilename, $tempFilename, true);
