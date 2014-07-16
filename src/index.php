@@ -8,7 +8,7 @@ use Timeregistry\Time\WorkHourCommand;
 
 require 'vendor/autoload.php';
 
-$app = new Application('Scandesigns Timelog', '1.0');
+$app = new Application('Scandesigns Timelog', '1.1');
 $app->add(new SelfupdateCommand());
 $app->add(new TimeCommand());
 $app->add(new SetApiCommand());
