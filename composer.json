@@ -1,0 +1,13 @@
+{
+    "name": "lsv/timeregistry_console_pharbuilder",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Martin Aarhof",
+            "email": "maa@scandesigns.dk"
+        }
+    ],
+    "require": {
+        "symfony/finder": "2.5.*"
+    }
+}

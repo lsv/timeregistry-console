@@ -1,0 +1,33 @@
+{
+    "name": "lsv/timeregistry_console",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Martin Aarhof",
+            "email": "maa@scandesigns.dk"
+        }
+    ],
+    "repositories": {
+        "urlcrypt": {
+            "type": "package",
+            "package": {
+                "name": "aarondfrancis/URLcrypt",
+                "version": "dev-master",
+                "source": {
+                    "url": "https://github.com/aarondfrancis/URLcrypt.git",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        }
+    },
+    "require": {
+        "symfony/finder": "2.5.*",
+        "symfony/filesystem": "2.5.*",
+        "symfony/console": "2.5.*",
+        "guzzlehttp/guzzle": "4.*"
+    },
+    "autoload": {
+        "psr-0": { "Timeregistry": "src/" }
+    }
+}
