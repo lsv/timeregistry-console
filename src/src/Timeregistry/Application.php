@@ -16,9 +16,21 @@ use Symfony\Component\Console\Input\InputOption;
 class Application extends BaseApplication
 {
 
+    private $pharmode = false;
+
     public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN')
     {
         parent::__construct($name, $version);
+    }
+
+    public function setPharmode($pharmode)
+    {
+        $this->pharmode = $pharmode;
+    }
+
+    public function getPharmode()
+    {
+        return $this->pharmode;
     }
     
     protected function getDefaultInputDefinition()

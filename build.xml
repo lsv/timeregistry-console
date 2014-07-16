@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Timelog" default="release">
+    <taskdef name="bumpversion" classname="tasks.versionNumber"/>
+    <property name="version" value="null"/>
+
+    <target name="prepare">
+        <echo msg="Starting bumping version"/>
+        <bumpversion />
+        <copy file="src/config.php.dist" tofile="src/config.php" overwrite="true">
+            <filterchain>
+                <replacetokens begintoken="%%" endtoken="%%">
+                    <token key="version" value="${version}" />
+                    <token key="pharmode" value="true" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+        <echo msg="Bumped to version: ${version}"/>
+    </target>
+
+    <target name="create-phar" depends="prepare">
+        <exec command="php createPhar.php"/>
+        <echo msg="Phar file created" />
+    </target>
+
+    <target name="release" depends="create-phar">
+        <exec command="git add ."/>
+        <exec command="git commit -m 'bumped to version: ${version}'"/>
+        <exec command="git push"/>
+    </target>
+
+</project>

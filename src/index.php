@@ -7,8 +7,10 @@ use Timeregistry\Time\TimeCommand;
 use Timeregistry\Time\WorkHourCommand;
 
 require 'vendor/autoload.php';
+require 'config.php';
 
-$app = new Application('Scandesigns Timelog', '1.1');
+$app = new Application('Scandesigns Timelog', $version);
+$app->setPharmode($pharmode);
 $app->add(new SelfupdateCommand());
 $app->add(new TimeCommand());
 $app->add(new SetApiCommand());
