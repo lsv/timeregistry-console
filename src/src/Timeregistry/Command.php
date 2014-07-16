@@ -1,14 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lsv
- * Date: 5/15/14
- * Time: 11:22 AM
- */
-
 namespace Timeregistry;
-
-require __DIR__ . '/../../vendor/aarondfrancis/URLcrypt/lib/Urlcrypt.php';
 
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command as BaseCommand;
@@ -35,12 +26,6 @@ abstract class Command extends BaseCommand
 
     protected $dateCompatible = '(should be combitable with http://dk1.php.net/manual/en/datetime.formats.date.php)';
 
-    public function __construct()
-    {
-        \Urlcrypt::$key = 'bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3';
-        parent::__construct();
-    }
-    
     private function getApiFile()
     {
         $home = getenv('HOME');
